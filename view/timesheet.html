@@ -13,17 +13,35 @@
 		</div>
   	</div>
 
-  	<div class="row">
-		<div class="col-md-4">
-			<input type="text"><br><br>
-		</div>
+	<div ng-repeat="n in daterange track by $index">
+	  	<div class="row">
+			<div class="col-md-4">
+				<input type="text" ng-value="$index"><br><br>
+			</div>
 
-		<div class="col-md-4">
-			<input type="text"><br><br>
-		</div>
+			<div class="col-md-4">
+				<input type="text"><br><br>
+			</div>
 
-		<div class="col-md-4">
-			<input type="text"><br><br>
-		</div>
-  	</div>
+			<div class="col-md-4">
+				<input type="text"><br><br>
+			</div>
+	  	</div>
+	</div>
+
+<!-- 
+	[
+		{
+			data : 22/04/2017,
+			hours: 5,
+			project: testing 
+		},
+		{
+			data : 23/04/2017,
+			hours: 5,
+			project: testing 
+		}
+	]
+
+-->
 </div>

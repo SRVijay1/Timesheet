@@ -13,6 +13,9 @@ TMAPP.controller("timeCtrl", function($scope){
 
 		var date_differ = parseInt((eDate - sDate)/(24*3600*1000));
 
-		console.log(date_differ);
+		var indexValue = date_differ + 1;
+		$scope.daterange = new Array(indexValue);
+		console.log(indexValue)
+
 	}
 });
