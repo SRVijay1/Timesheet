@@ -1,14 +1,18 @@
-TMAPP.controller("loginctrl", function($scope){
-	
+TMAPP.controller("loginctrl", function($scope, $rootScope, $ajaxservice){
 		
 		$scope.username = "";
 		$scope.password = "";
 		$scope.success = false;
 		$scope.usrnm = false;
 		$scope.pswrd = false;
+		$rootScope.hideSign = false;
+		$rootScope.showSign = false;
+		
+
 
 	$scope.loginFun = function(){
-		
+//		$ajaxservice.ajax();
+
 		var uname = "vijay";
 		var pwd = "vijay@123";
 
@@ -24,16 +28,21 @@ TMAPP.controller("loginctrl", function($scope){
 			$scope.pswrd = true;
 			//return true;
 		}
+
+
 		if($scope.username == uname && $scope.password == pwd){
 			
 			$scope.success = true;
 			$scope.usrnm = false;
 			$scope.pswrd = false;
+			$rootScope.hideSign = true;
+			angular.element('#myModal').modal('hide');
 		}
-		
-
+		if($rootScope.hideSign == true){
+			console.log(uname);
+			$rootScope.showSign = true;
+			$rootScope.currentUser = uname;
+		}
 	}
-
-//M5882017- kalirathinam
 
 });

@@ -9,7 +9,8 @@
 				<li><a href="#">Help</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" data-toggle="modal" data-target="#myModal">SignIn</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#myModal" ng-hide="$root.hideSign">SignIn</a></li>
+				<li><a ng-show="$root.showSign">{{$root.currentUser}}</a></li>
 			</ul>
 		</div>
 	</nav>
