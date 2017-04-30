@@ -1,19 +1,26 @@
-TMAPP.service("$ajaxservice", function($http){
-	this.ajax = function() {
-		var data = {};
+TMAPP.factory("ajaxFactory", function($http, $q){
+	var requestAjax = {};
+
+	requestAjax.ajaxCall = function(url, method, dataType, data, callback) {
+		data = data || {};
+
 		$http({
-			url : "./ajax/login.json",
-			method : "post",
-			dataType: "json",
+			url : url,
+			method : method,
+			dataType: dataType,
 			headers : {
 				'Content-type':'application/x-www-form-urlencoded; charset=UTF-8' 
 			},
 			data: $.param(data)
-		}).success(function(response) {
-			console.log(response);
-		}).error(function(response) {
-			$scope.myWelcome = response.statusText;
-		});
+		})
 
-	}
+		.then(function(result){
+			callback(result);
+		},function(status, error, config, Result){
+			console.log(status);
+		});
+	};
+
+
+	return requestAjax;
 })

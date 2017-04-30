@@ -1,4 +1,4 @@
-TMAPP.controller("loginctrl", function($scope, $rootScope, $ajaxservice){
+TMAPP.controller("loginctrl", function($scope, $rootScope, ajaxFactory){
 		
 		$scope.username = "";
 		$scope.password = "";
@@ -10,8 +10,63 @@ TMAPP.controller("loginctrl", function($scope, $rootScope, $ajaxservice){
 		
 
 
+
+
+
+
+
+
+
+
+
 	$scope.loginFun = function(){
-//		$ajaxservice.ajax();
+		var bool = true;
+		if($scope.username == ""){
+			console.log("Enter the valid username");
+			$scope.usrnm = true;
+			bool = false;
+		}
+		if($scope.password == ""){
+			console.log("Enter the valid password");
+			$scope.pswrd = true;
+			bool = false;
+		}
+
+		if(bool == true){
+			var data = {
+				username : $scope.username,
+				password : $scope.password
+			}
+
+			ajaxFactory.ajaxCall("http://localhost/Timesheet/framework/login.php", "POST", "JSON", data, function(response){
+				console.log("response", response);
+				console.log(response.data);
+				console.log(response.data.status);
+				$rootScope.hideSign = true;
+				
+				if(response.data.status == "Success"){
+					angular.element('#myModal').modal('hide');
+					$rootScope.showSign = true;
+					$rootScope.currentUser = $scope.username;
+				}
+				else{
+					console.log("Error");
+				}
+
+				
+/*				if(username == $scope.username && password == $scope.password){	
+					angular.element('#myModal').modal('hide');
+				}
+*/
+
+
+
+			});
+		}
+		
+
+
+/*
 
 		var uname = "vijay";
 		var pwd = "vijay@123";
@@ -30,6 +85,7 @@ TMAPP.controller("loginctrl", function($scope, $rootScope, $ajaxservice){
 		}
 
 
+
 		if($scope.username == uname && $scope.password == pwd){
 			
 			$scope.success = true;
@@ -43,6 +99,7 @@ TMAPP.controller("loginctrl", function($scope, $rootScope, $ajaxservice){
 			$rootScope.showSign = true;
 			$rootScope.currentUser = uname;
 		}
-	}
+*/	}
+
 
 });

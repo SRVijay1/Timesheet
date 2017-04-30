@@ -1,5 +1,5 @@
 [{
-	status: "success"
-	uname : "",
-	pwd : ""
+	"status": "success",
+	"uname": "testing",
+	"pwd": "testing"
 }]
